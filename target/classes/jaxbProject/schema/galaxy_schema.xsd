@@ -1,0 +1,115 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Invoice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="InvoiceHeader">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:int" name="InvoiceNumber"/>
+              <xs:element type="xs:date" name="InvoiceDate"/>
+              <xs:element type="xs:string" name="InvoiceType"/>
+              <xs:element type="xs:string" name="InvoiceCurrencyCode"/>
+              <xs:element type="xs:float" name="ExchangeRate"/>
+              <xs:element type="xs:string" name="SendEInv"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AccountingSupplierParty">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="ID"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:string" name="NIPT"/>
+              <xs:element name="PostalAddress">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="StreetName"/>
+                    <xs:element type="xs:string" name="CityName"/>
+                    <xs:element type="xs:string" name="CountryID"/>
+                    <xs:element type="xs:string" name="CountryName"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PartyTaxScheme">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="TaxScheme"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="AccountingCustomerParty">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:short" name="ID"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:string" name="NIPT"/>
+              <xs:element type="xs:string" name="Customer_Description"/>
+              <xs:element name="PostalAddress">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="CountryID"/>
+                    <xs:element type="xs:string" name="CountryName"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="PartyTaxScheme">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="TaxScheme"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Invoice_Line" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:byte" name="LineNum"/>
+              <xs:element type="xs:float" name="LineQuantity"/>
+              <xs:element type="xs:float" name="Line_Net_Value_after_discount"/>
+              <xs:element type="xs:float" name="Line_Discount_Value"/>
+              <xs:element type="xs:float" name="Tax_Amount"/>
+              <xs:element type="xs:float" name="TaxInclusiveAmount"/>
+              <xs:element name="Item">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Code"/>
+                    <xs:element type="xs:string" name="Description"/>
+                    <xs:element type="xs:string" name="Notes"/>
+                    <xs:element name="ClassifiedTaxCategory">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:float" name="Vat_Percent"/>
+                          <xs:element type="xs:string" name="Vat_Scheme"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Price">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:float" name="PriceAmount"/>
+                    <xs:element type="xs:byte" name="BaseQuantity"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PaymentTerms">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="PaymentPaymentTerm"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
